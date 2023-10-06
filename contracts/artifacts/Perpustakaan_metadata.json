@@ -1,0 +1,213 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tahunBuat",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_judul",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_penulis",
+						"type": "string"
+					}
+				],
+				"name": "addBook",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "bookISBNs",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "books",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "isbn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tahunBuat",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "judul",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "penulis",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_isbn",
+						"type": "uint256"
+					}
+				],
+				"name": "deleteBook",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "generateRandomIsbn",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_isbn",
+						"type": "uint256"
+					}
+				],
+				"name": "getBook",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_isbn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tahunBuat",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_judul",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_penulis",
+						"type": "string"
+					}
+				],
+				"name": "updateBook",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Perpustakaan.sol": "Perpustakaan"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Perpustakaan.sol": {
+			"keccak256": "0x117380b3474fd3e76f6a65482ca61852a30ecc1621d15b79839772d336ec317e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8a1075d387f1c6f9879e24c02929766fd1c0c993063e792b332e626fb6633f89",
+				"dweb:/ipfs/QmZhNoFfvasXJSZV6NnKGBJ8D9wgTDyqLDK4Jyn1BUEqma"
+			]
+		}
+	},
+	"version": 1
+}
