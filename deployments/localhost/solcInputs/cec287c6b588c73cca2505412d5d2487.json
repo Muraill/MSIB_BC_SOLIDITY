@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Perpustakaan.sol": {
+      "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity 0.8.13;\r\n\r\ncontract Perpustakaan {\r\n    \r\n    uint256 private nonce;\r\n    struct Book {\r\n        uint256 isbn;\r\n        uint256 tahunBuat;\r\n        string judul;\r\n        string penulis;\r\n    }\r\n\r\n    mapping(uint256 => Book) private books;\r\n    uint256[] private bookISBNs; // Daftar ISBN buku\r\n\r\n    address private admin;\r\n\r\n    modifier onlyAdmin {\r\n        require(msg.sender == admin, \"Hanya admin yang dapat melakukan ini\");\r\n        _;\r\n    }\r\n\r\n    constructor() {\r\n        admin = msg.sender;\r\n    }\r\n\r\n    event BookAdded(uint256 indexed isbn);\r\n\r\n    function generateRandomIsbn() private returns (uint256) {\r\n        nonce++;\r\n        bytes32 combineData = keccak256(abi.encodePacked('', nonce));\r\n        uint256 randomIsbn = uint256(combineData) % 10**13;\r\n        return randomIsbn;\r\n    }\r\n     function bookLength() public view returns(uint256) {\r\n        return bookISBNs.length;\r\n    }\r\n\r\n    function addBook(uint256 _tahunBuat, string calldata _judul, string calldata _penulis) external onlyAdmin {\r\n        uint256 isbn = generateRandomIsbn();\r\n        books[isbn] = Book(isbn, _tahunBuat, _judul, _penulis);\r\n        bookISBNs.push(isbn);\r\n        emit BookAdded(isbn);\r\n    }\r\n\r\n    function getISBNByIndex(uint256 index) public view returns (uint256) {\r\n    require(index < bookISBNs.length, \"Indeks buku tidak valid\");\r\n    return bookISBNs[index];\r\n    }\r\n\r\n    function updateBook(uint256 _isbn, uint256 _tahunBuat, string calldata _judul, string calldata _penulis) external onlyAdmin {\r\n        require(books[_isbn].isbn == _isbn, \"Buku tidak ditemukan\");\r\n        books[_isbn] = Book(_isbn, _tahunBuat, _judul, _penulis);\r\n    }\r\n\r\n    function deleteBook(uint256 _isbn) external onlyAdmin {\r\n        require(books[_isbn].isbn == _isbn, \"Buku tidak ditemukan\");\r\n\r\n        // Hapus buku dari mapping\r\n        delete books[_isbn];\r\n\r\n        // Cari indeks buku dalam daftar ISBN dan hapusnya dari daftar\r\n        uint256 indexToDelete;\r\n        for (uint256 i = 0; i < bookISBNs.length; i++) {\r\n            if (bookISBNs[i] == _isbn) {\r\n                indexToDelete = i;\r\n                break;\r\n            }\r\n        }\r\n        require(indexToDelete < bookISBNs.length, \"Indeks buku tidak ditemukan\");\r\n\r\n        // Pindahkan elemen terakhir ke indeks yang akan dihapus, lalu potong elemen terakhir\r\n        uint256 lastIndex = bookISBNs.length - 1;\r\n        bookISBNs[indexToDelete] = bookISBNs[lastIndex];\r\n        bookISBNs.pop();\r\n    }\r\n\r\n    function getBookDetail(uint256 _isbn) public view returns (uint256, uint256, string memory, string memory){\r\n       Book storage book = books[_isbn];\r\n       return (book.isbn, book.tahunBuat, book.judul, book.penulis);\r\n    }\r\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
